@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/wuyong1992/config-repo
+          username: 627522616@qq.com
+          password: jianguo1992
+          basedir: /home/jg/IdeaProjects/springcloud2/gitconfigdir
+server:
+  port: 8084
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+      hostname: config
+      instance-id: ${spring.cloud.client.hostname}:${server.port}
+      prefer-ip-address: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
